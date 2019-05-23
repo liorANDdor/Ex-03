@@ -107,28 +107,37 @@ namespace Ex03.ConsoleUI
 			return mainMenu;
 
 		}
-		private Menu VechiclesMenu()
+		private Menu BuildMenu(string[]x)
 		{
-			Menu vechiclesMenu = new Menu();
+			Menu newMenu = new Menu();
 			List<string> items = new List<string>();
-			items.Add("Fuel car");
-			items.Add("Electric car");
-			items.Add("Fuel motorcycle");
-			items.Add("Electric motorcycle");
-			items.Add("Truck ");
-			vechiclesMenu.Items = items;
-			return vechiclesMenu;
+			foreach (string c in x)
+			{
+
+				items.Add(c);
+				
+			}
+			newMenu.Items = items;
+			return newMenu;
 
 		}
 
 		private void AddVechicles()
 		{
-			
-			Menu vechiclesMenu = VechiclesMenu();
+			string plate = "lior";
+			string[] c = Enum.GetNames(typeof(Vechicles.OprtionOfVechicles));
+			Menu vechiclesMenu =BuildMenu(c);
 			m_UserInterfaceInputOutput.ShowMenu(vechiclesMenu);
-			int userInput = GetInputFromUser(vechiclesMenu);
-			m_UserInterfaceInputOutput.StopTheProgram();
-			
+			Vechicles.OprtionOfVechicles vechicleType = (Vechicles.OprtionOfVechicles)GetInputFromUser(vechiclesMenu);
+			try
+			{
+				m_GarageLogicManager.AddNewV(vechicleType, plate);
+			}
+			catch(Exception ex)
+			{
+				m_UserInterfaceInputOutput.PrintMessageToUser(ex.Message);
+			}
+			m_UserInterfaceInputOutput.StopTheProgram();		
 		}
 		private void ShowListOfVechicles()
 		{

@@ -97,9 +97,9 @@ namespace Ex03.ConsoleUI
 			List<string> items= new List<string>();
 			items.Add("Add a new vechicles");
 			items.Add("Show list of vechicles");
-			items.Add("Add a new vechicles");
 			items.Add("Change vechicles situation");
 			items.Add("Inflating wheels ");
+			items.Add("Fuel a fuel vechicles");
 			items.Add("Charge electric vechicles");
 			items.Add("Get info of vechicles");
 			items.Add("Exit program");
@@ -107,15 +107,13 @@ namespace Ex03.ConsoleUI
 			return mainMenu;
 
 		}
-		private Menu BuildMenu(string[]x)
+		private Menu BuildMenu(string[]i_StringToMenu)
 		{
 			Menu newMenu = new Menu();
 			List<string> items = new List<string>();
-			foreach (string c in x)
+			foreach (string eachString in i_StringToMenu)
 			{
-
-				items.Add(c);
-				
+				items.Add(eachString);	
 			}
 			newMenu.Items = items;
 			return newMenu;
@@ -125,12 +123,14 @@ namespace Ex03.ConsoleUI
 		private void AddVechicles()
 		{
 			string plate = "lior";
-			string[] c = Enum.GetNames(typeof(Vechicles.OprtionOfVechicles));
-			Menu vechiclesMenu =BuildMenu(c);
+			string[] stringOfEnum = Enum.GetNames(typeof(Vechicles.OprtionOfVechicles));
+			
+			Menu vechiclesMenu =BuildMenu(stringOfEnum);
 			m_UserInterfaceInputOutput.ShowMenu(vechiclesMenu);
 			Vechicles.OprtionOfVechicles vechicleType = (Vechicles.OprtionOfVechicles)GetInputFromUser(vechiclesMenu);
 			try
 			{
+				m_GarageLogicManager.AddNewV(vechicleType, plate);
 				m_GarageLogicManager.AddNewV(vechicleType, plate);
 			}
 			catch(Exception ex)
@@ -141,11 +141,57 @@ namespace Ex03.ConsoleUI
 		}
 		private void ShowListOfVechicles()
 		{
-			Console.WriteLine("2");
+			const int k_AllVechicles = 4;
+			string[] c = Enum.GetNames(typeof(Vechicles.VehicleStatus));
+			Menu VehicleStatusMenu = BuildMenu(c);
+			VehicleStatusMenu.Items.Add("AllVechicles");
+			m_UserInterfaceInputOutput.ShowMenu(VehicleStatusMenu);
+			int userInput= GetInputFromUser(VehicleStatusMenu);
+			List<string> plateOFvechiclesToShow = null;
+			if (userInput == k_AllVechicles)
+			{
+				plateOFvechiclesToShow = m_GarageLogicManager.GetAllVechiclesPlate();
+			}
+			else
+			{
+				Vechicles.VehicleStatus vehicleStatus = (Vechicles.VehicleStatus)userInput;
+				
+				plateOFvechiclesToShow= m_GarageLogicManager.GetVechiclesPlateBySort(vehicleStatus);
+			}
+			if (plateOFvechiclesToShow.Count == 0)
+			{
+				m_UserInterfaceInputOutput.PrintMessageToUser("there are no vechicles for you!");
+			}
+			else
+			{
+				foreach(string eachPlate in plateOFvechiclesToShow)
+				{
+					m_UserInterfaceInputOutput.PrintMessageToUser(eachPlate);
+				}
+			}
+			m_UserInterfaceInputOutput.StopTheProgram();
 		}
 		private void ChangeVechiclesSituation()
 		{
-			Console.WriteLine("3");
+			string[] stringOfEnum = Enum.GetNames(typeof(Vechicles.VehicleStatus));
+
+			Menu vechicleStatusMenu = BuildMenu(stringOfEnum);
+			m_UserInterfaceInputOutput.ShowMenu(vechicleStatusMenu);
+			Vechicles.VehicleStatus vechicleStatus = (Vechicles.VehicleStatus)GetInputFromUser(vechicleStatusMenu);
+			string plate;
+			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
+			plate = m_UserInterfaceInputOutput.GetStringFromUser();
+			try
+			{
+				m_GarageLogicManager.SetVechiclesStatus(plate, vechicleStatus);
+				m_UserInterfaceInputOutput.PrintMessageToUser("Status has been changed");
+			}
+			catch(Exception ex)
+			{
+				m_UserInterfaceInputOutput.PrintMessageToUser(ex.Message);
+			}
+			m_UserInterfaceInputOutput.StopTheProgram();
+			
 		}
 		private void InflatingWheels()
 		{

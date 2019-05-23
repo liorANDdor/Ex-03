@@ -49,6 +49,13 @@ namespace Ex03.ConsoleUI
 		{
 			Console.WriteLine(i_Message);
 		}
-		
+		public string GetStringFromUser()
+		{
+			string userInput;
+			userInput = Console.ReadLine();
+			return userInput;
+		}
+
+
 	}
 }

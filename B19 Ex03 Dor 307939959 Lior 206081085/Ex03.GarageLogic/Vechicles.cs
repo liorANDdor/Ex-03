@@ -13,11 +13,20 @@ namespace Ex03.GarageLogic
 		Engine f;
 		private string m_NameOfOwners;
 		private string m_numberOfOwners;
-		private int m_VehicleStatus = (int)VehicleStatus.inRepairing;
-
+		private VehicleStatus m_VehicleStatus = VehicleStatus.inRepairing;
 		private float m_PrecentOfEnergy;
 		private Wheel m_setOfWheels;
-
+		public VehicleStatus Status
+		{
+			get
+			{
+				return m_VehicleStatus;
+			}
+			set
+			{
+				m_VehicleStatus = value;
+			}
+		}
 		public enum VehicleStatus
 		{
 			inRepairing=1,
@@ -30,7 +39,7 @@ namespace Ex03.GarageLogic
 			ElectricCar = 2,
 			FuelMotorcycle = 3,
 			ElectricMotorcycle = 4,
-			Truck = 5
+			Truck = 5,
 		}
 		public Vechicles(string i_nameOfOwner, string i_NumOfOwner, float i_PrecentOfEnergy)
 		{

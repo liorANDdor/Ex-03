@@ -7,7 +7,19 @@ namespace Ex03.GarageLogic
 {
 	class VechiclesCreat
 	{
-	
+	/*
+	 * createVehicle({
+	 * type: ..
+	 * ...
+	 * })
+	 * 
+	 * =>
+	 * vehicleFactory(data){
+	 * data.type => instance
+	 * instance.builder(data)
+	 * }
+	 */ 
+
 		public Vechicles add(string plate, Vechicles.OprtionOfVechicles vechiclesType)
 		{
 			Vechicles newVechicle = null;

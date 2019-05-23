@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-	class Truck : Vechicles
+	class Truck 
 	{
+		private bool isDangerMetrials;
+		private float m_SizeOfLoad;
+		
 	}
 }

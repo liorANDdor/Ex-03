@@ -55,6 +55,22 @@ namespace Ex03.GarageLogic
 				m_ListOfVechicles[i_PlateNumber].Status = i_VechiclesStatus;
 			}
 		}
+		public List <StringPlusType> getLsit(Vechicles.OprtionOfVechicles vechicleType, string plate)
+		{
+			List<StringPlusType> ListToReturn = null;
+			ListToReturn= m_ListOfVechicles[plate].getQuestions();
+			return ListToReturn;
+		}
+		public void SetVechicel(Vechicles.OprtionOfVechicles vechicleType, string plate,List<StringPlusType> Answers)
+		{
+			m_ListOfVechicles[plate].set(Answers);
+		}
+		public void del(string plate)
+
+		{
+			m_ListOfVechicles.Remove(plate);
+		
+		}
 
 
 	}

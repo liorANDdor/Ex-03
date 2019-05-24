@@ -122,21 +122,41 @@ namespace Ex03.ConsoleUI
 
 		private void AddVechicles()
 		{
-			string plate = "lior";
+			string plate;
 			string[] stringOfEnum = Enum.GetNames(typeof(Vechicles.OprtionOfVechicles));
-			
 			Menu vechiclesMenu =BuildMenu(stringOfEnum);
 			m_UserInterfaceInputOutput.ShowMenu(vechiclesMenu);
 			Vechicles.OprtionOfVechicles vechicleType = (Vechicles.OprtionOfVechicles)GetInputFromUser(vechiclesMenu);
+			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
+			plate = m_UserInterfaceInputOutput.GetStringFromUser();
 			try
 			{
+
 				m_GarageLogicManager.AddNewV(vechicleType, plate);
-				m_GarageLogicManager.AddNewV(vechicleType, plate);
+				List<StringPlusType> Questions = m_GarageLogicManager.getLsit(vechicleType,plate);
+				List<StringPlusType> Answers = new List<StringPlusType>();
+				string answer;
+				foreach(StringPlusType q in Questions)
+				{
+					m_UserInterfaceInputOutput.PrintMessageToUser(q.Word);
+					answer = m_UserInterfaceInputOutput.GetStringFromUser();
+					Answers.Add(new StringPlusType( answer,q.mytype));
+				}
+				try
+				{
+					m_GarageLogicManager.SetVechicel(vechicleType, plate, Answers);
+				}
+				catch(Exception rx)
+				{
+					m_UserInterfaceInputOutput.PrintMessageToUser("one of your inputs is not as needed, please try again");
+					m_GarageLogicManager.del(plate);
+				}
 			}
 			catch(Exception ex)
 			{
 				m_UserInterfaceInputOutput.PrintMessageToUser(ex.Message);
 			}
+			
 			m_UserInterfaceInputOutput.StopTheProgram();		
 		}
 		private void ShowListOfVechicles()

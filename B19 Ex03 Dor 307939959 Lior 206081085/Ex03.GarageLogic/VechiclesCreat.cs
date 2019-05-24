@@ -25,11 +25,11 @@ namespace Ex03.GarageLogic
 			Vechicles newVechicle = null;
 			if (vechiclesType == Vechicles.OprtionOfVechicles.ElectricCar)
 			{
-				newVechicle = new Car();
+				newVechicle = new Car(new ElectricEngine(),plate);
 			}
 			else if (vechiclesType == Vechicles.OprtionOfVechicles.FuelCar)
 			{
-				newVechicle = new Car();
+				newVechicle = new Car(new FuelEngine(), plate);
 			}
 			else if (vechiclesType == Vechicles.OprtionOfVechicles.ElectricMotorcycle)
 			{

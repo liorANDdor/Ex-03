@@ -8,14 +8,16 @@ namespace Ex03.GarageLogic
 {
 	public  class Vechicles
 	{
-		
+		protected const int k_numOfMemberToInit = 3;
+		protected string m_VehicleModelName;
+		protected string m_LicensePlateNumber;//
+		protected Engine m_Engine;//
+		protected string m_NameOfOwners;
+		protected string m_PhoneNumberOfOwners;
+		protected VehicleStatus m_VehicleStatus = VehicleStatus.inRepairing;//
+		protected float m_PrecentOfEnergy;
+		protected Wheel[] m_SetOfWheels;
 
-		Engine f;
-		private string m_NameOfOwners;
-		private string m_numberOfOwners;
-		private VehicleStatus m_VehicleStatus = VehicleStatus.inRepairing;
-		private float m_PrecentOfEnergy;
-		private Wheel m_setOfWheels;
 		public VehicleStatus Status
 		{
 			get
@@ -41,13 +43,36 @@ namespace Ex03.GarageLogic
 			ElectricMotorcycle = 4,
 			Truck = 5,
 		}
-		public Vechicles(string i_nameOfOwner, string i_NumOfOwner, float i_PrecentOfEnergy)
+		public Vechicles(Engine i_Engine, string i_LicensePlateNumber)
 		{
-			m_NameOfOwners = i_nameOfOwner;
-			m_numberOfOwners = i_NumOfOwner;
-			m_PrecentOfEnergy = i_PrecentOfEnergy;
+			m_Engine = i_Engine;
+			m_LicensePlateNumber = i_LicensePlateNumber;
 		}
-		
+		public virtual List<StringPlusType> getQuestions()
+		{
+			List<StringPlusType> Questions = new List<StringPlusType>();
+			Questions.Add(new StringPlusType("Name Of Owner: ", typeof(string)));
+			Questions.Add(new StringPlusType("Phone number Of Owner: ", typeof(string)));
+			Questions.Add(new StringPlusType("Precent Of Energy: ", typeof(float)));
+			
+			return Questions;
+		}
+		public virtual void set(List<StringPlusType> Answer)
+		{
+			bool valid = false;
+			foreach(StringPlusType x in Answer)
+			{
+				
+					var v = Convert.ChangeType(x.Word, x.mytype);
+			
+			}
+			m_NameOfOwners = Answer[0].Word;
+			m_PhoneNumberOfOwners = Answer[1].Word;
+			m_PrecentOfEnergy = float.Parse(Answer[2].Word);
+			if (m_PrecentOfEnergy > 100 || m_PrecentOfEnergy < 0)
+				throw new Exception();
+		}
+
 
 	}
 }

@@ -54,12 +54,13 @@ namespace Ex03.GarageLogic
 			Questions.Add(new StringPlusType("Name Of Owner: ", typeof(string)));
 			Questions.Add(new StringPlusType("Phone number Of Owner: ", typeof(string)));
 			Questions.Add(new StringPlusType("Precent Of Energy: ", typeof(float)));
-			
+			Questions.Add(new StringPlusType("Wheel Creator ", typeof(string)));
+			Questions.Add(new StringPlusType("Current Wheel Presure ", typeof(float)));
+
 			return Questions;
 		}
 		public virtual void set(List<StringPlusType> Answer)
 		{
-			bool valid = false;
 			foreach(StringPlusType x in Answer)
 			{
 				

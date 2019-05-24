@@ -13,5 +13,34 @@ namespace Ex03.GarageLogic
 			Electric=1,
 			Fuel
 		}
+		private float m_MaxCapacity;
+		private float m_CurrentCapacity;
+
+		public float MaxCapacity
+		{
+			get
+			{
+				return m_MaxCapacity;
+			}
+
+			set
+			{
+				m_MaxCapacity = value;
+			}
+		}
+		public float CurrCapacity
+		{
+			get
+			{
+				return m_CurrentCapacity;
+			}
+
+			set
+			{
+				if (value > m_MaxCapacity)
+					throw new Exception();
+				m_CurrentCapacity = value;
+			}
+		}
 	}
 }

@@ -18,25 +18,35 @@ o פעולת ניפוח )מתודה שמקבלת נתון לגבי כמה אוו
 		private string m_NameOfCreator = null;
 		private float m_CurrentWheelPressure = 0;
 		private float m_MaxWheelPressure = 0;
-		public float Pressure
+	
+		public Wheel(float i_MaxWheelPressure)
 		{
-			get
-			{
-				return m_CurrentWheelPressure;
-			}
+			m_MaxWheelPressure = i_MaxWheelPressure;
+		}
+		public float CurrPressure
+		{
 			set
 			{
-				m_CurrentWheelPressure = value;
+				CurrPressure = value;
+			}
+			get
+			{
+				return CurrPressure;
 			}
 		}
-		public Wheel(string i_NameOfCreato,float i_CurrentWheelPressure)
+		public string Creator
 		{
-			
+			set
+			{
+				m_NameOfCreator = value;
+			}
+			get
+			{
+				return m_NameOfCreator;
+			}
 		}
-		public void SetMaxPressure()
-		{
-			m_CurrentWheelPressure = m_MaxWheelPressure;
-		}
+
+
 	}
 		
 }

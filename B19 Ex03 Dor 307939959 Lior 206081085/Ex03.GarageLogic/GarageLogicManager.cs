@@ -84,6 +84,29 @@ namespace Ex03.GarageLogic
 			}
 			return x;
 		}
+		public void Inflat(string plate)
+		{
+			if (!m_ListOfVechicles.ContainsKey(plate))
+			{
+				throw new Exception("there are not Plate like that, try again");
+			}
+			else
+			{
+				m_ListOfVechicles[plate].setWheelToMax();
+			}
+		}
+		public void FuelACuelV(string plate, float sizeInt)
+		{
+			if (!m_ListOfVechicles.ContainsKey(plate))
+			{
+				throw new Exception("there are not Plate like that, try again");
+			}
+			else
+			{
+				
+				m_ListOfVechicles[plate].setFuel(sizeInt);
+			}
+		}
 
 
 	}

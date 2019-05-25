@@ -53,7 +53,7 @@ namespace Ex03.GarageLogic
 			List<StringPlusType> Questions = new List<StringPlusType>();
 			Questions.Add(new StringPlusType("Name Of Owner: ", typeof(string)));
 			Questions.Add(new StringPlusType("Phone number Of Owner: ", typeof(string)));
-			Questions.Add(new StringPlusType("Precent Of Energy: ", typeof(float)));
+			Questions.Add(new StringPlusType("Precent Of Energy (1-100): ", typeof(float)));
 			Questions.Add(new StringPlusType("Wheel Creator ", typeof(string)));
 			
 
@@ -74,7 +74,8 @@ namespace Ex03.GarageLogic
 				throw new Exception();
 		}
 		public abstract string GetInfo();
-
+		public abstract void setWheelToMax();
+		public abstract void setFuel(float x);
 
 	}
 }

@@ -184,9 +184,11 @@ namespace Ex03.ConsoleUI
 			}
 			else
 			{
+				int i = 1;
 				foreach(string eachPlate in plateOFvechiclesToShow)
 				{
-					m_UserInterfaceInputOutput.PrintMessageToUser(eachPlate);
+					m_UserInterfaceInputOutput.PrintMessageToUser(i+". "+eachPlate);
+					i++;
 				}
 			}
 			m_UserInterfaceInputOutput.StopTheProgram();
@@ -215,10 +217,47 @@ namespace Ex03.ConsoleUI
 		}
 		private void InflatingWheels()
 		{
-			Console.WriteLine("4");
+			string plate;
+			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
+			plate = m_UserInterfaceInputOutput.GetStringFromUser();
+			try
+			{
+				m_GarageLogicManager.Inflat(plate);
+				m_UserInterfaceInputOutput.PrintMessageToUser("Succefd ");
+			}
+			catch (Exception ex)
+			{
+				m_UserInterfaceInputOutput.PrintMessageToUser(ex.Message);
+			}
+			m_UserInterfaceInputOutput.StopTheProgram();
 		}
 		private void FuelAFuelVechicles()
 		{
+			string plate;
+			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
+			plate = m_UserInterfaceInputOutput.GetStringFromUser();
+			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
+			string size = m_UserInterfaceInputOutput.GetStringFromUser();
+			float sizeInt=0;
+			bool check = float.TryParse(size, out sizeInt);
+			if (check)
+			{
+				try
+				{
+					m_GarageLogicManager.FuelACuelV(plate, sizeInt);
+					m_UserInterfaceInputOutput.PrintMessageToUser("Succefd ");
+				}
+				catch (Exception ex)
+				{
+					m_UserInterfaceInputOutput.PrintMessageToUser(ex.Message);
+				}
+			}
+			else
+			{
+				m_UserInterfaceInputOutput.PrintMessageToUser("Incorrect ");
+			}
+
+			m_UserInterfaceInputOutput.StopTheProgram();
 			Console.WriteLine("5");
 		}
 		private void ChargeElectricVechicles()

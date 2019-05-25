@@ -25,6 +25,13 @@ namespace Ex03.GarageLogic
 				m_SetOfWheels[i] = new Wheel(31);
 			}
 		}
+		public override void setWheelToMax()
+		{
+			foreach(Wheel x in m_SetOfWheels)
+			{
+				x.CurrPressure = x.MaxPressure;
+			}
+		}
 		public override List<StringPlusType> getQuestions()
 		{
 			List<StringPlusType> Questions = base.getQuestions();
@@ -77,6 +84,15 @@ namespace Ex03.GarageLogic
 				
 						
 		}
+		public override void setFuel(float x)
+		{
+			if (m_Engine is FuelEngine)
+			{
+				m_Engine.CurrCapacity += x;
+			}
+			else
+				throw new Exception();
+		}
 		public override string GetInfo()
 		{
 			string x;
@@ -85,7 +101,8 @@ namespace Ex03.GarageLogic
 numofDoor: {1}
 maxEne: {2}
 color: {3}
-c: {4}", m_NameOfOwners, numOfDoors,m_Engine.MaxCapacity,m_Color,(m_Engine as FuelEngine).FuelKind);
+c: {4}
+{5}", m_NameOfOwners, numOfDoors,m_Engine.CurrCapacity,m_Color,(m_Engine as FuelEngine).FuelKind,m_SetOfWheels[0].CurrPressure);
 			return x;
 		}
 

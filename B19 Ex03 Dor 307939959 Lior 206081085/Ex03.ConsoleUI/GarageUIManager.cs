@@ -236,7 +236,7 @@ namespace Ex03.ConsoleUI
 			string plate;
 			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
 			plate = m_UserInterfaceInputOutput.GetStringFromUser();
-			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
+			m_UserInterfaceInputOutput.PrintMessageToUser("hoe many enery ");
 			string size = m_UserInterfaceInputOutput.GetStringFromUser();
 			float sizeInt=0;
 			bool check = float.TryParse(size, out sizeInt);

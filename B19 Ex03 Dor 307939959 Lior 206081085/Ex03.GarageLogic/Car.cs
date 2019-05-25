@@ -80,29 +80,40 @@ namespace Ex03.GarageLogic
 			else
 			{
 				(m_Engine as ElectricEngine).MaxCapacity = 1.8f;
+				m_Engine.CurrCapacity = m_PrecentOfEnergy / 100 * m_Engine.MaxCapacity;
 			}
 				
 						
 		}
 		public override void setFuel(float x)
 		{
-			if (m_Engine is FuelEngine)
-			{
+			
 				m_Engine.CurrCapacity += x;
-			}
-			else
-				throw new Exception();
+			
 		}
 		public override string GetInfo()
 		{
 			string x;
-			x = String.Format(
-			@"name of Owners: {0}
+			if (m_Engine is FuelEngine)
+			{
+				x = String.Format(
+				@"name of Owners: {0}
 numofDoor: {1}
 maxEne: {2}
 color: {3}
 c: {4}
-{5}", m_NameOfOwners, numOfDoors,m_Engine.CurrCapacity,m_Color,(m_Engine as FuelEngine).FuelKind,m_SetOfWheels[0].CurrPressure);
+{5}", m_NameOfOwners, numOfDoors, m_Engine.CurrCapacity, m_Color, (m_Engine as FuelEngine).FuelKind, m_SetOfWheels[0].CurrPressure);
+			}
+			else
+			{
+				x = String.Format(
+		@"name of Owners: {0}
+numofDoor: {1}
+maxEne: {2}
+color: {3}
+c: {4}
+", m_NameOfOwners, numOfDoors, m_Engine.CurrCapacity, m_Color, m_SetOfWheels[0].CurrPressure);
+			}
 			return x;
 		}
 

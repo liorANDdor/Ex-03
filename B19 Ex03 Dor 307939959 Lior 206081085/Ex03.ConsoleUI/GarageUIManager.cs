@@ -227,7 +227,22 @@ namespace Ex03.ConsoleUI
 		}
 		private void GetInfoOfCar()
 		{
-			Console.WriteLine("7");
+			string plate;
+			string x = null;
+			m_UserInterfaceInputOutput.PrintMessageToUser("Please Enter a plate number: ");
+			plate = m_UserInterfaceInputOutput.GetStringFromUser();
+			try
+			{
+				 x = m_GarageLogicManager.getinfo(plate);
+				Console.WriteLine(x);
+			}
+			catch (Exception ex)
+			{
+				m_UserInterfaceInputOutput.PrintMessageToUser(ex.Message);
+			}
+
+			
+			m_UserInterfaceInputOutput.StopTheProgram();
 		}
 	}
 }

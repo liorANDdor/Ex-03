@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-	public  class Vechicles
+	public abstract class Vechicles
 	{
 		protected const int k_numOfMemberToInit = 3;
 		protected string m_VehicleModelName;
@@ -55,7 +55,7 @@ namespace Ex03.GarageLogic
 			Questions.Add(new StringPlusType("Phone number Of Owner: ", typeof(string)));
 			Questions.Add(new StringPlusType("Precent Of Energy: ", typeof(float)));
 			Questions.Add(new StringPlusType("Wheel Creator ", typeof(string)));
-			Questions.Add(new StringPlusType("Current Wheel Presure ", typeof(float)));
+			
 
 			return Questions;
 		}
@@ -73,6 +73,7 @@ namespace Ex03.GarageLogic
 			if (m_PrecentOfEnergy > 100 || m_PrecentOfEnergy < 0)
 				throw new Exception();
 		}
+		public abstract string GetInfo();
 
 
 	}

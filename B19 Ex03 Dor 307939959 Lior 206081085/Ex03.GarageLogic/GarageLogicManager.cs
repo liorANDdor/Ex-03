@@ -71,6 +71,19 @@ namespace Ex03.GarageLogic
 			m_ListOfVechicles.Remove(plate);
 		
 		}
+		public string getinfo(string plate)
+		{
+			string x = null;
+			if (!m_ListOfVechicles.ContainsKey(plate))
+			{
+				throw new Exception("there are not Plate like that, try again");
+			}
+			else
+			{
+				x= m_ListOfVechicles[plate].GetInfo();
+			}
+			return x;
+		}
 
 
 	}

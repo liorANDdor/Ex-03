@@ -27,11 +27,22 @@ o פעולת ניפוח )מתודה שמקבלת נתון לגבי כמה אוו
 		{
 			set
 			{
-				CurrPressure = value;
+				m_CurrentWheelPressure = value;
 			}
 			get
 			{
-				return CurrPressure;
+				return m_CurrentWheelPressure;
+			}
+		}
+		public float MaxPressure
+		{
+			set
+			{
+				m_MaxWheelPressure = value;
+			}
+			get
+			{
+				return m_MaxWheelPressure;
 			}
 		}
 		public string Creator
